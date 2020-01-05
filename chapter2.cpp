@@ -78,7 +78,7 @@ int celsiusToFahrenheit(int celsius){
 void showTime(int hours, int minutes){
   const int minutes_in_hour = 60;
   int hours_from_minutes = minutes / minutes_in_hour;
-  hours += hours_from_minutes; minutes = minutes % minutes_in_hour;
+  hours += hours_from_minutes; minutes %= minutes_in_hour;
   std::cout << "Czas: " << hours << (minutes < 10 ? ":0" : ":") << minutes << std::endl;
 }
 
