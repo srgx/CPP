@@ -1,10 +1,10 @@
 #include <iostream>
 
 void exercise1(); void exercise2(); void exercise3();
-void exercise4(); void exercise5(); void exercise6();
+void exercise4(); void exercise5(); void exercise6(); void exercise7();
 
 int main(){
-  exercise6();
+  exercise1();
   return 0;
 }
 
@@ -80,7 +80,22 @@ void exercise5(){
 }
 
 void exercise6(){
-  
+  std::cout << "Ile kilometrów przejechano: ";
+  float kilometry; std::cin >> kilometry;
+  std::cout << "Ile litrów benzyny zużyto: ";
+  float litry; std::cin >> litry;
+  float na_sto = (litry / kilometry) * 100;
+  std::cout << "Zużycie wynosi " << na_sto << " litrów na 100 kilometrów.\n";
+}
+
+void exercise7(){
+  const float litry_na_galon = 3.875; const float mile_na_sto_km = 62.14;
+  std::cout << "Zużycie benzyny na 100 km: ";
+  float litry; std::cin >> litry;
+  float galony = litry / litry_na_galon;
+  std::cout << "Galony " << galony << std::endl;
+  float mile_na_galon = mile_na_sto_km / galony;
+  std::cout << litry << " litrów na 100 km to " << mile_na_galon << " mili na galon.\n";
 }
 
 
