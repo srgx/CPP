@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -14,9 +15,14 @@ const string MONTH_NAMES[MONTHS] = {
     "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec",
     "Lipiec" ,"Sierpień", "Wrzesień" ,"Październik", "Listopad", "Grudzień"
   };
+  
+struct car{
+  string marka;
+  int rok;
+};
 
 int main(){
-  exercise10();
+  exercise1();
 }
 
 void exercise1(){
@@ -73,7 +79,6 @@ void exercise5(){
     suma += kwoty[i];
   
   cout << "Łączna sprzedaż: " << suma << endl;
-   
 }
 
 void exercise6(){
@@ -101,7 +106,36 @@ void exercise6(){
 }
 
 void exercise7(){
-  // ...
+  cout << "Ile samochodów chcesz skatalogować: ";
+  int ile = 5; cin >> ile; cin.get();
+  car * pt = new car[ile];
+  for(int i=0;i<ile;i++){
+    cout << "Samochód #" << i+1 << ":\n";
+    cout << "Proszę podać markę: ";
+    getline(cin,pt[i].marka);
+    cout << "Rok produkcji: ";
+    cin >> pt[i].rok; cin.get();
+  }
+  
+  for(int i=0;i<ile;i++){
+    cout << pt[i].rok << " " << pt[i].marka << endl;
+  }
+    
+  delete [] pt;
+}
+
+void exercise8(){
+  cout << "Podawaj słowa (kiedy skończysz napisz \"gotowe\")\n";
+  char slowo [40]; cin >> slowo; int ile{0};
+  while(strcmp(slowo,"gotowe")) { ile++; cin >> slowo; }
+  cout << "Podano " << ile << " słów.\n";
+}
+
+void exercise9(){
+  cout << "Podawaj słowa (kiedy skończysz napisz \"gotowe\")\n";
+  string slowo; cin >> slowo; int ile{0};
+  while("gotowe"!=slowo) { ile++; cin >> slowo; }
+  cout << "Podano " << ile << " słów.\n";
 }
 
 void exercise10(){
