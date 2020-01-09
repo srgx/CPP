@@ -16,7 +16,7 @@ const string MONTH_NAMES[MONTHS] = {
   };
 
 int main(){
-  exercise7();
+  exercise10();
 }
 
 void exercise1(){
@@ -102,6 +102,16 @@ void exercise6(){
 
 void exercise7(){
   // ...
+}
+
+void exercise10(){
+  cout << "Podaj liczbę wierszy: ";
+  int wiersze; cin >> wiersze;
+  for(int i=0;i<wiersze;i++){
+    for(int j=i;j<wiersze-1;j++) { cout << '.'; }
+    for(int j=0;j<i+1;j++) { cout << '*'; }
+    cout << endl;
+  }
 }
 
 
