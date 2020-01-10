@@ -5,12 +5,20 @@
 using namespace std;
 
 void exercise1(); void exercise2(); void exercise3(); void exercise4();
-
-
+void exercise5();
 void showmenu();
 
+const int STRSIZE = 40;
+
+struct zpdw{
+  char imie[STRSIZE];
+  char stanowisko[STRSIZE];
+  char pseudonim[STRSIZE];
+  int preferencje;
+};
+
 int main(){
-  exercise3();
+  exercise5();
 }
 
 void exercise1(){
@@ -29,7 +37,7 @@ void exercise1(){
 }
 
 void exercise2(){
-  const int MAX_DATKI = 5;
+  const int MAX_DATKI = 10;
   array<double,MAX_DATKI>datki;
   cout << "Podawaj wartości maksymalnie 10 datków('q' kończy wprowadzanie):\n";
   cout << "Datek 1: "; double datek; int index = 0;
@@ -54,12 +62,14 @@ void exercise3(){
   showmenu(); char ch;
   
   do{
-    cout << "Proszę podać literę r p d lub g: "; ch = cin.get(); cin.get();
+    cout << "Proszę podać literę r p d lub g: "; cin.get(ch);
+    while(cin.get()!='\n')
+      continue;
   }while(ch!='r'&&ch!='p'&&ch!='d'&&ch!='g');
   
   switch(ch){
     case 'r': cout << "Roślinożercy jedzą rośliny."; break;
-    case 'p': cout << "Chopin był wielkim pianistą."; break;
+    case 'p': cout << "Chopin wielkim pianistą był."; break;
     case 'd': cout << "Drzewo to orzech."; break;
     case 'g': cout << "Gram w Tomb Raider."; break;
   }
@@ -68,7 +78,51 @@ void exercise3(){
 }
 
 void exercise4(){
+  zpdw czlonkowie [5] = {
+    {"Jan","Prezydent","Tiger",0},
+    {"Joanna","Sekretarka","Osa",1},
+    {"Adrian","Zastępca","Lis",2},
+    {"Magdalena","Tester","Hiena",1},
+    {"Justyna","Skarbnik","Czarna Wdowa",2},
+  };
+  cout << "Zakon Programistów Dobrej Woli\n";
+  cout << "a. lista wg imion\tb. lista wg stanowisk\n";
+  cout << "c. lista wg pseudonimów\td. lista wg preferencji\n";
+  cout << "q. koniec\n";
+  
+  char ch;
+  while(true){
+    do{
+      cout << "Wybierz jedną z opcji: "; cin.get(ch);
+      while(cin.get()!='\n') { continue; }
+    }while(ch!='a'&&ch!='b'&&ch!='c'&&ch!='d'&&ch!='q');
+    
+    if(ch=='q')
+      break;
+    else
+      switch(ch){
+        case 'a':
+          for(zpdw x : czlonkowie) { cout << x.imie << endl; } break;
+        case 'b':
+          for(zpdw x : czlonkowie) { cout << x.stanowisko << endl; } break;
+        case 'c':
+          for(zpdw x : czlonkowie) { cout << x.pseudonim << endl; } break;
+        case 'd':
+          for(zpdw x : czlonkowie)
+            switch(x.preferencje){
+              case 0: cout << x.imie << endl; break;
+              case 1: cout << x.stanowisko << endl; break;
+              case 2: cout << x.pseudonim << endl; break;
+            } // end switch
+          break;
+      } // end switch
+  } // end while
+  cout << "Do zobaczenia!\n";
+}
+
+void exercise5(){
   // ...
+  cout << "Naturlandia\n";
 }
 
 void showmenu(){

@@ -107,7 +107,7 @@ void exercise6(){
 
 void exercise7(){
   cout << "Ile samochodów chcesz skatalogować: ";
-  int ile = 5; cin >> ile; cin.get();
+  int ile; cin >> ile; cin.get();
   car * pt = new car[ile];
   for(int i=0;i<ile;i++){
     cout << "Samochód #" << i+1 << ":\n";
