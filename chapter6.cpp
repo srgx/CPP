@@ -1,14 +1,17 @@
 #include <iostream>
 #include <cctype>
 #include <array>
+#include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
 void exercise1(); void exercise2(); void exercise3(); void exercise4();
 void exercise5(); void exercise6(); void exercise7(); void exercise8();
-void showmenu();
+void exercise9(); void showmenu();
 
 const int STRSIZE = 40;
+const int GRANICA = 10000;
 
 struct zpdw{
   char imie[STRSIZE];
@@ -145,7 +148,6 @@ void exercise5(){
 }
 
 void exercise6(){
-  const int GRANICA = 10000;
   cout << "Podaj liczbę wpłacających: "; int ile; cin >> ile; cin.get();
   donator * pt = new donator[ile];
   
@@ -198,8 +200,76 @@ void exercise7(){
 }
 
 void exercise8(){
-  // ...
-  cout << "Plik tekstowy.\n";
+  const int SIZE = 60;
+  const char filename[SIZE] = "ex6-8.txt";
+  ifstream inFile; inFile.open(filename);
+  
+  if(!inFile.is_open()){
+    cout << "Nie udało się otworzyć pliku.\n";
+    exit(EXIT_FAILURE);
+  }
+  
+  int count = 0; inFile.get();
+  while(inFile.good()){ count++; inFile.get(); }
+  
+  if(inFile.eof())
+    cout << "Koniec pliku.\n";
+  else if(inFile.fail())
+    cout << "Przerwano wczytywanie danych - błąd\n";
+  else
+    cout << "Przerwano wczytywanie danych - przyczyna nieznana\n";
+    
+  if(0==count)
+    cout << "Nie wczytano żadnych danych.\n";
+  else
+    cout << "Wczytano " << count << " znaków.\n";
+    
+  inFile.close();
+}
+
+void exercise9(){
+  const int SIZE = 60;
+  const char filename[SIZE] = "ex6-9.txt";
+  ifstream inFile; inFile.open(filename);
+  
+  if(!inFile.is_open()){
+    cout << "Nie udało się otworzyć pliku.\n";
+    exit(EXIT_FAILURE);
+  }
+  
+  int ile; inFile >> ile; inFile.get();
+  donator * pt = new donator[ile];
+  
+  for(int i = 0;i<ile;i++){
+    getline(inFile,pt[i].nazwisko);
+    inFile >> pt[i].kwota; inFile.get();
+  }
+  
+  inFile.close();
+  
+  cout << "***NASI WSPANIALI SPONSORZY***\n";
+  bool empty = true;
+  for(int i = 0;i<ile;i++){
+    if(pt[i].kwota>=GRANICA){
+      cout << pt[i].nazwisko << endl; empty = false;
+    }
+  }
+  
+  if(empty)
+    cout << "brak\n";
+  
+  empty = true;
+  cout << "**NASI SPONSORZY**\n";
+  for(int i = 0;i<ile;i++){
+    if(pt[i].kwota<GRANICA){
+      cout << pt[i].nazwisko << endl; empty = false;
+    }
+  }
+  
+  if(empty)
+    cout << "brak\n";
+  
+  delete [] pt;
 }
 
 void showmenu(){
