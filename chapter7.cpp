@@ -36,7 +36,7 @@ float sredniaHarmoniczna(float x,float y);
 int wprowadzWyniki(float wyniki[],int rozmiar);
 void pokazWyniki(const float wyniki[], int rozmiar);
 float sredniaWynikow(const float wyniki[], int rozmiar);
-void pokazPudlo(pudlo); void ustawPudlo(pudlo*);
+void pokazPudlo(pudlo p); void ustawPudlo(pudlo* pt);
 long double probability(unsigned int numbers,unsigned int picks);
 long double silnia(int x);
 int fillArray(double liczby[],int rozmiar);
@@ -49,27 +49,33 @@ void fill(double pa[]);
 void show(const double pa[]);
 void fill2(tablica * pa);
 void show2(const tablica * da);
-
-
-
 int getinfo(student pa[],int n);
 void display1(student st);
 void display2(const student * ps);
 void display3(const student pa[],int n);
+double add(double x,double y);
+double someFun(double x, double y);
+double otherFun(double x, double y);
+double calculate(double x, double y, double (*fn)(double,double));
 
 
 int main(){
-  exercise10();
+  exercise1();
 }
 
 
 void exercise1(){
-  cout << "Podaj dwie liczby: ";
-  int pierwsza,druga; cin >> pierwsza >> druga;
-  while(pierwsza!=0&&druga!=0){
-    cout << "Średnia harmoniczna: " << sredniaHarmoniczna(pierwsza,druga) << endl;
-    cout << "Podaj kolejne dwie liczby: ";
-    cin >> pierwsza >> druga;
+  int pierwsza,druga;
+  while(true){
+    cout << "Podaj dwie liczby(koniec jeśli jedna z liczb to 0): ";
+    while(!(cin >> pierwsza >> druga)){
+      cin.clear();
+      while(cin.get()!='\n'){ continue; }
+      cout << "Podaj prawidłowe liczby: ";
+    }
+    if(pierwsza==0||druga==0) { break; }
+    cout << "Średnia harmoniczna: "
+         << sredniaHarmoniczna(pierwsza,druga) << endl;
   }
   cout << "Gotowe.\n";
 }
@@ -84,13 +90,11 @@ void exercise2(){
 void exercise3(){
   float wysokosc = 10; float szerokosc = 20; float dlugosc = 15;
   pudlo jakiesPudlo = {
-    "Best Box",
-    wysokosc, szerokosc,
-    dlugosc, 0
+    "Best Box", wysokosc, szerokosc, dlugosc
   };
   cout << "Pudło przed ustawieniem objętości:\n";
   pokazPudlo(jakiesPudlo);
-  cout << "Pudło po ustawieniu objętości:.\n";
+  cout << "Pudło po ustawieniu objętości:\n";
   ustawPudlo(&jakiesPudlo); pokazPudlo(jakiesPudlo);
   cout << "Gotowe\n";
 }
@@ -178,7 +182,21 @@ void exercise9(){
 }
 
 void exercise10(){
-  cout << "Exercise 10\n";
+  const int arSize = 3;
+  const char * descriptions[3] = {
+    "x+y", "x*y+15", "x*2+y"
+  };
+  double (*pf[arSize])(double,double) = { add, someFun, otherFun };
+  cout << "Wprowadź parę liczb: "; int a,b;
+  while(cin >> a >> b){
+    for(int i=0;i<arSize;i++){
+      cout << "Funkcja " << i+1 << "(" << descriptions[i] << "): " << calculate(a,b,pf[i]) << endl;
+    }
+    while(cin.get()!='\n')
+      continue;
+    cout << "Podaj kolejną parę liczb(q aby zakończyć): ";
+  }
+  cout << "Do widzenia.\n";
 }
 
 
@@ -338,24 +356,42 @@ int getinfo(student pa[],int n){
   }
   return index;
 }
+
 void display1(student st){
   cout << "Imię: " << st.fullname << endl;
   cout << "Hobby: " << st.hobby << endl;
   cout << "OOP Level: " << st.ooplevel << endl;
   cout << endl;
 }
+
 void display2(const student * ps){
   cout << "Imię: " << ps->fullname << endl;
   cout << "Hobby: " << ps->hobby << endl;
   cout << "OOP Level: " << ps->ooplevel << endl;
   cout << endl;
 }
+
 void display3(const student pa[],int n){
   for(int i=0;i<n;i++){
     display2(&pa[i]);
   }
 }
 
+double add(double x,double y){
+  return x+y;
+}
+
+double someFun(double x, double y){
+  return x*y+15;
+}
+
+double otherFun(double x, double y){
+  return x*2+y;
+}
+
+double calculate(double x, double y, double (*fn)(double x, double y)){
+  return fn(x,y);
+}
 
 
 
