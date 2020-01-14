@@ -1,6 +1,21 @@
 #include <iostream>
+#include <array>
+#include <string>
+#include <cstring>
 
 using namespace std;
+
+const int Seasons = 4;
+const char * Snames[Seasons] = {
+  "Wiosna","Lato","Jesień","Zima"
+};
+const int SLEN = 30;
+
+struct student{
+  char fullname[SLEN];
+  char hobby[SLEN];
+  int ooplevel;
+};
 
 struct pudlo{
   char producent[40];
@@ -10,8 +25,13 @@ struct pudlo{
   float objetosc;
 };
 
+struct tablica{
+  double wydatki[Seasons];
+};
+
 void exercise1(); void exercise2(); void exercise3(); void exercise4();
 void exercise5(); void exercise6(); void exercise7(); void exercise8();
+void exercise9(); void exercise10();
 float sredniaHarmoniczna(float x,float y);
 int wprowadzWyniki(float wyniki[],int rozmiar);
 void pokazWyniki(const float wyniki[], int rozmiar);
@@ -22,14 +42,24 @@ long double silnia(int x);
 int fillArray(double liczby[],int rozmiar);
 void showArray(const double liczby[],int rozmiar);
 void reverseArray(double liczby[],int rozmiar);
-
-
 double * fill_array(double * ar, double * limit);
 void show_array(const double * ar, double * limit);
 void revalue(double r,double * ar, double * limit);
+void fill(double pa[]);
+void show(const double pa[]);
+void fill2(tablica * pa);
+void show2(const tablica * da);
+
+
+
+int getinfo(student pa[],int n);
+void display1(student st);
+void display2(const student * ps);
+void display3(const student pa[],int n);
+
 
 int main(){
-  exercise8();
+  exercise10();
 }
 
 
@@ -120,7 +150,35 @@ void exercise7(){
 }
 
 void exercise8(){
-  cout << "Exercise 8\n";
+  double expenses[Seasons];
+  fill(expenses);
+  show(expenses);
+  
+  tablica tab;
+  fill2(&tab);
+  show2(&tab);
+}
+
+void exercise9(){
+  cout << "Podaj wielkość grupy: "; int class_size; cin >> class_size;
+  while(cin.get()!='\n')
+    continue;
+  student * ptr_stu = new student[class_size];
+  int entered = getinfo(ptr_stu,class_size);
+  cout << "--------------------------------\n";
+  cout << "***WPROWADZONE DANE***\n";
+  for(int i=0;i<entered;i++){
+    display1(ptr_stu[i]);
+    display2(&ptr_stu[i]);
+  }
+  cout << "--------------------------------\n";
+  display3(ptr_stu,entered);
+  delete [] ptr_stu;
+  cout << "Gotowe\n";
+}
+
+void exercise10(){
+  cout << "Exercise 10\n";
 }
 
 
@@ -228,6 +286,73 @@ void show_array(const double * pt, double * limit){
 void revalue(double r, double * pt, double * limit){
   for(int i=0;pt!=limit;i++){
     *pt *= r; pt++;
+  }
+}
+
+void fill(double pa[]){
+  for(int i=0;i<Seasons;i++){
+    cout << "Podaj wyniki za okres " << Snames[i] << ": ";
+    cin >> pa[i];
+  }
+}
+
+
+void show(const double da[]){
+  double total = 0.0; cout << "WYDATKI\n";
+  for(int i=0;i<Seasons;i++){
+    cout << Snames[i] << ": " << da[i] << " zł\n"; total += da[i];
+  }
+  cout << "Łącznie wydatki roczne: " << total << " zł\n";
+}
+
+
+void fill2(tablica * pa){
+  for(int i=0;i<Seasons;i++){
+    cout << "Podaj wyniki za okres " << Snames[i] << ": ";
+    cin >> pa->wydatki[i];
+  }
+}
+
+void show2(const tablica * da){
+  double total = 0.0; cout << "WYDATKI\n";
+  for(int i=0;i<Seasons;i++){
+    cout << Snames[i] << ": " << da->wydatki[i] << " zł\n"; total += da->wydatki[i];
+  }
+  cout << "Łącznie wydatki roczne: " << total << " zł\n";
+}
+
+
+int getinfo(student pa[],int n){
+  cout << "Wprowadź dane o studentach.\n";
+  int index = 0; char temp[SLEN];
+  cout << "Student 1\nImię: "; cin.getline(temp,SLEN);
+  while(index<n && strlen(temp)!=0){
+    strcpy(pa[index].fullname,temp);
+    cout << "Hobby: "; cin.getline(pa[index].hobby,SLEN);
+    cout << "OOP Level: "; cin >> pa[index].ooplevel; cin.get();
+    if(++index<n){
+      cout << "Student " << index+1 << endl;
+      cout << "Imię: ";
+      cin.getline(temp,SLEN);
+    }
+  }
+  return index;
+}
+void display1(student st){
+  cout << "Imię: " << st.fullname << endl;
+  cout << "Hobby: " << st.hobby << endl;
+  cout << "OOP Level: " << st.ooplevel << endl;
+  cout << endl;
+}
+void display2(const student * ps){
+  cout << "Imię: " << ps->fullname << endl;
+  cout << "Hobby: " << ps->hobby << endl;
+  cout << "OOP Level: " << ps->ooplevel << endl;
+  cout << endl;
+}
+void display3(const student pa[],int n){
+  for(int i=0;i<n;i++){
+    display2(&pa[i]);
   }
 }
 
