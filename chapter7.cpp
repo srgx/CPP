@@ -344,7 +344,7 @@ int getinfo(student pa[],int n){
   cout << "Wprowadź dane o studentach.\n";
   int index = 0; char temp[SLEN];
   cout << "Student 1\nImię: "; cin.getline(temp,SLEN);
-  while(index<n && strlen(temp)!=0){
+  while(index<n && temp[0]!='\0'){
     strcpy(pa[index].fullname,temp);
     cout << "Hobby: "; cin.getline(pa[index].hobby,SLEN);
     cout << "OOP Level: "; cin >> pa[index].ooplevel; cin.get();
