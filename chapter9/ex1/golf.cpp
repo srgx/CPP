@@ -13,7 +13,6 @@ int setgolf(golf & g){
   cout << "Podaj imię: "; char temp [Len];
   cin.get(temp,Len); if(!cin) { return 0; }
   char next; cin.get(next); while(next!='\n'){ cin.get(next); }
-  strcpy(g.fullname,temp);
   cout << "Podaj handicap: "; int hc;
   while(!(cin >> hc)){
     cin.clear();

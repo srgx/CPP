@@ -10,11 +10,6 @@ int main(){
     if(setgolf(wyniki[i])) { wprowadzono++; } else { break; }
   }
   
-  if(wprowadzono>0){
-    cout << "Ustawiam handicap ostatniego zawodnika na 150\n";
-    handicap(wyniki[wprowadzono-1],150);
-  }
-  
   cout << "**WPROWADZONE WYNIKI**\n";
   if(wprowadzono==0){
     cout << "Brak Wyników\n";
