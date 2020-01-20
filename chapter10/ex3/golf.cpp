@@ -3,7 +3,7 @@
 #include "golf.h"
 
 golf::golf(){
-  m_fullname[0] = '\n';
+  m_fullname[0] = '\0';
   m_handicap = 0;
 }
 
