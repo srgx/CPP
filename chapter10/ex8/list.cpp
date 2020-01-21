@@ -6,10 +6,9 @@ List::List(){
 }
 
 List::~List(){
-  Cell * pt = &top;
-  while(pt->next){
+  while(top.next){
     Cell * to_delete = top.next;
-    pt->next = pt->next->next;
+    top.next = top.next->next;
     std::cout << "Delete " << to_delete->value << std::endl;
     delete to_delete;
   }
