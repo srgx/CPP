@@ -68,7 +68,7 @@ namespace VECTOR{
       set_x();
       set_y();
     }else{
-      cout << "Niepoprawna wartość trzeciego argumentu set() -- ";
+      cout << "Niepoprawna wartość trzeciego argumentu reset() -- ";
       cout << "zeruję wektor\n";
       x = y = mag = ang = 0.0;
       mode = RECT;

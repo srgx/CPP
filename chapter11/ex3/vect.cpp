@@ -57,7 +57,7 @@ namespace VECTOR{
       x = mag*cos(ang);
       y = mag*sin(ang);
     }else{
-      cout << "Niepoprawna wartość trzeciego argumentu set() -- ";
+      cout << "Niepoprawna wartość trzeciego argumentu reset() -- ";
       cout << "zeruję wektor\n";
       x = y = 0.0;
       mode = RECT;
