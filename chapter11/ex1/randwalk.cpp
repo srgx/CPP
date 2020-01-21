@@ -46,7 +46,8 @@ int main(){
     cout << "Podaj dystans do przejścia(k, aby zakończyć): ";
   }
   cout << "Koniec!\n";
+  outFile.close();
   cin.clear();
   while(cin.get()!='\n'){ continue; }
-  outFile.close();
+
 }
