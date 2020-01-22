@@ -17,7 +17,7 @@ class Complex{
     Complex operator*(float n)const;
     friend Complex operator*(float n,const Complex & c);
 
-    Complex operator~();
+    Complex operator~()const;
 
     friend std::ostream & operator<<(std::ostream & os, const Complex & c);
     friend std::istream & operator>>(std::istream & is, Complex & c);

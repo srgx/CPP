@@ -33,7 +33,7 @@ Complex operator*(float n,const Complex & c){
 }
 
 
-Complex Complex::operator~(){
+Complex Complex::operator~()const{
   return Complex(real,-imag);
 }
 
