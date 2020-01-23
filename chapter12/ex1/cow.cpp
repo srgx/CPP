@@ -4,7 +4,7 @@
 
 Cow::Cow(){
   strcpy(name,"C++ow");
-  hobby = new char[6];
+  hobby = new char[5];
   strcpy(hobby,"brak");
   weight = 0;
 }
