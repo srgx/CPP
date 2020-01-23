@@ -140,10 +140,10 @@ String operator+(const char * a, const String & b){
   return result;
 }
 
-int String::has(const char)const{
+int String::has(const char z)const{
   int count = 0;
   for(int i=0;i<len;i++){
-    if(str[i]=='A'){ count++; }
+    if(str[i]==z){ count++; }
   }
   return count;
 }
