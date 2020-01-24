@@ -2,7 +2,7 @@
 #include "list.h"
 
 List::List(){
-  top = {"Sentinel",NULL};
+  top = {"Sentinel",nullptr};
 }
 
 List::~List(){

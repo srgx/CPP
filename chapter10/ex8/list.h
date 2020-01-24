@@ -1,9 +1,14 @@
 #ifndef LIST__H__
 #define LIST__H__
-#include "cell.h"
+
+typedef std::string Item;
 
 class List{
   private:
+    struct Cell{
+      Item value;
+      Cell * next;
+    };
     static const int MAX = 5;
     Cell top;
   public:
