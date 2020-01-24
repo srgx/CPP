@@ -60,7 +60,6 @@ SimRes simulate(int qs, int hours, double perhour){
   min_per_cust = MIN_PER_HR / perhour;
 
   Item temp;                 // dane nowego klienta
-  Item temp2;
   long turnaways = 0;        // liczba klientów odesłanych z kolejki
   long customers = 0;        // liczba klientów przyjętych do kolejki
   long served = 0;           // liczba klientów obsłużonych w symulacji
@@ -78,12 +77,11 @@ SimRes simulate(int qs, int hours, double perhour){
           }
           else{
             customers++;
+            temp.set(cycle);
             if(line.queuecount()<line2.queuecount()){
-              temp.set(cycle);
               line.enqueue(temp);
             }else{
-              temp2.set(cycle);
-              line2.enqueue(temp2);
+              line2.enqueue(temp);
             }
           }
       }
@@ -98,9 +96,9 @@ SimRes simulate(int qs, int hours, double perhour){
 
       if (wait_time2 <= 0 && !line2.isempty())
       {
-          line2.dequeue (temp2);
-          wait_time2 = temp2.ptime();
-          line_wait += cycle - temp2.when();
+          line2.dequeue (temp);
+          wait_time2 = temp.ptime();
+          line_wait += cycle - temp.when();
           served++;
       }
 
@@ -110,8 +108,8 @@ SimRes simulate(int qs, int hours, double perhour){
       if (wait_time2 > 0)
           wait_time2--;
 
-      sum_line += line.queuecount(); // ile osób czeka w tym cyklu
-      sum_line += line2.queuecount(); // ile osób czeka w tym cyklu
+      // ile osób czeka w tym cyklu
+      sum_line += line.queuecount() + line2.queuecount();
   }
 
   return SimRes{
