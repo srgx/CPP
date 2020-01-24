@@ -53,50 +53,73 @@ bool newcustomer(double x)
 SimRes simulate(int qs, int hours, double perhour){
 
   Queue line(qs);
+  Queue line2(qs);
   long cyclelimit = MIN_PER_HR * hours;
 
   double min_per_cust;
   min_per_cust = MIN_PER_HR / perhour;
 
   Item temp;                 // dane nowego klienta
+  Item temp2;
   long turnaways = 0;        // liczba klientów odesłanych z kolejki
   long customers = 0;        // liczba klientów przyjętych do kolejki
   long served = 0;           // liczba klientów obsłużonych w symulacji
   long sum_line = 0;         // łączna liczba oczekujących
   int wait_time = 0;         // czas do zwolnienia bankomatu
+  int wait_time2 = 0;
   long line_wait = 0;        // łączny czas oczekiwania
 
   for (int cycle = 0; cycle < cyclelimit; cycle++)
   {
       if (newcustomer(min_per_cust))  // mamy nowego chętnego
       {
-          if (line.isfull())
-              turnaways++;
-          else
-          {
-              customers++;
-              temp.set(cycle);        // czas przybycia = nr cyklu
-              line.enqueue(temp);     // dołączenie klienta do kolejki
+          if (line.isfull()&&line2.isfull()){
+            turnaways++;
+          }
+          else{
+            customers++;
+            if(line.queuecount()<line2.queuecount()){
+              temp.set(cycle);
+              line.enqueue(temp);
+            }else{
+              temp2.set(cycle);
+              line2.enqueue(temp2);
+            }
           }
       }
+
       if (wait_time <= 0 && !line.isempty())
       {
-          line.dequeue (temp);        // następny do obsłużenia
-          wait_time = temp.ptime();   // czas obsługi = wait_time
+          line.dequeue (temp);
+          wait_time = temp.ptime();
           line_wait += cycle - temp.when();
           served++;
       }
+
+      if (wait_time2 <= 0 && !line2.isempty())
+      {
+          line2.dequeue (temp2);
+          wait_time2 = temp2.ptime();
+          line_wait += cycle - temp2.when();
+          served++;
+      }
+
       if (wait_time > 0)
           wait_time--;
-      sum_line += line.queuecount();
+
+      if (wait_time2 > 0)
+          wait_time2--;
+
+      sum_line += line.queuecount(); // ile osób czeka w tym cyklu
+      sum_line += line2.queuecount(); // ile osób czeka w tym cyklu
   }
 
   return SimRes{
     customers,
     served,
     turnaways,
-    (double) sum_line / cyclelimit,
-    (double) line_wait / served
+    (double) sum_line / cyclelimit / 2, // średnia długość kolejki
+    (double) line_wait / served // średni czas oczekiwania
   };
 }
 

@@ -41,4 +41,3 @@ class Queue
         bool dequeue(Item &item);       // wyciąga element z czoła kolejki
 };
 #endif
-
