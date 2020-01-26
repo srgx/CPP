@@ -6,7 +6,7 @@
 
 class abstractBaseDMA{
   public:
-    virtual void View() = 0;
+    virtual void View()const = 0;
     virtual ~abstractBaseDMA();
 };
 
@@ -23,7 +23,7 @@ class baseDMA : public abstractBaseDMA
         virtual ~baseDMA();
         baseDMA & operator=(const baseDMA & rs);
 
-        virtual void View();
+        virtual void View()const override;
 
         friend std::ostream & operator<<(std::ostream & os,
                 const baseDMA & rs);
@@ -42,7 +42,7 @@ class lacksDMA : public baseDMA
         lacksDMA(const char * c = "brak", const char * l = "brak",
                 int r = 0);
 
-        void View() override;
+        void View() const override;
         lacksDMA(const char * c, const baseDMA & rs);
         friend std::ostream & operator<<(std::ostream & os,
                 const lacksDMA & rs);
@@ -60,7 +60,7 @@ class hasDMA : public baseDMA
         hasDMA(const hasDMA & hs);
         ~hasDMA() override;
 
-        void View() override;
+        void View() const override;
         hasDMA & operator=(const hasDMA & rs);
         friend std::ostream & operator<<(std::ostream & os,
                 const hasDMA & rs);

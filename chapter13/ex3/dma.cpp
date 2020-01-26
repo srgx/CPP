@@ -112,17 +112,17 @@ std::ostream & operator<<(std::ostream & os, const hasDMA & hs)
 abstractBaseDMA::~abstractBaseDMA(){
 }
 
-void baseDMA::View(){
+void baseDMA::View()const{
   std::cout << "Etykietka: " << label << std::endl;
   std::cout << "Klasa: " << rating << std::endl;
 }
 
-void lacksDMA::View(){
+void lacksDMA::View()const{
   std::cout << (const baseDMA &)*this;
   std::cout << "Kolor: " << color << std::endl;
 }
 
-void hasDMA::View(){
+void hasDMA::View()const{
   std::cout << (const baseDMA &)*this;
   std::cout << "Styl: " << style << std::endl;
 }

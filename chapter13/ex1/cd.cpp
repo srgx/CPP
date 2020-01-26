@@ -3,8 +3,10 @@
 #include "cd.h"
 
 Cd::Cd(const char * s1, const char * s2, int n, double x){
-  strcpy(performers,s1);
-  strcpy(label,s2);
+  strncpy(performers,s1,49);
+  performers[49] = '\0';
+  strncpy(label,s2,19);
+  label[19] = '\0';
   selections = n;
   playtime = x;
 }
