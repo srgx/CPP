@@ -79,7 +79,7 @@ VintagePort::VintagePort(const VintagePort & vp) : Port(vp){
 }
 
 VintagePort & VintagePort::operator=(const VintagePort & vp){
-  if (this == &vp)
+  if(this==&vp)
     return *this;
   Port::operator=(vp);
   delete [] nickname;
@@ -99,6 +99,7 @@ void VintagePort::Show()const{
 ostream & operator<<(ostream & os, const VintagePort & vp){
   os << (const Port &)vp;
   os << ", " << vp.nickname << ", " << vp.year;
+  return os;
 }
 
 void VintagePort::Modify(){

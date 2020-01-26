@@ -22,6 +22,7 @@ int main(){
   cout << "------------------------\n";
   Port * pt = &pe4;
   pt->Show();
+  cout << pt->BottleCount() << " butelek\n";
   cout << "------------------------\n";
   cout << "Koniec\n";
 }
