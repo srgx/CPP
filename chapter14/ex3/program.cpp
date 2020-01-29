@@ -12,9 +12,8 @@ int main()
     using std::endl;
     using std::strchr;
 
-    QueueTp<Singer> queue(SIZE);
-    //Worker * lolas[SIZE];
-    /*
+    QueueTp<Worker*> queue;
+
     int ct;
     for (ct = 0; ct < SIZE; ct++)
     {
@@ -30,29 +29,34 @@ int main()
         }
         if (choice == 'w')
             break;
+
+        Worker * pt;
         switch(choice)
         {
-            case 'k': lolas[ct] = new Waiter;
+            case 'k': pt = new Waiter;
                       break;
-            case 'p': lolas[ct] = new Singer;
+            case 'p': pt = new Singer;
                       break;
-            case 's': lolas[ct] = new SingingWaiter;
+            case 's': pt = new SingingWaiter;
                       break;
         }
         cin.get();
-        lolas[ct]->Set();
+        pt->Set();
+        queue.enqueue(pt);
     }
 
+
     cout << "\nLista pracowników:\n";
-    int i;
+    int i; Worker * pnt;
     for (i = 0; i < ct; i++)
     {
         cout << endl;
-        lolas[i]->Show();
+        queue.dequeue(pnt);
+        pnt->Show();
     }
-    for (i = 0; i < ct; i++)
-        delete lolas[i];
+    //for (i = 0; i < ct; i++)
+    //    delete lolas[i];
     cout << "Koniec.\n";
 
-    return 0;*/
+    return 0;
 }

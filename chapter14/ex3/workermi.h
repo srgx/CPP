@@ -3,6 +3,7 @@
 #define WORKERMI_H_
 
 #include <string>
+#include <iostream>
 
 template<class T>
 class QueueTp{
@@ -23,12 +24,11 @@ public:
   int queuecount()const;
   bool enqueue(const T & item);
   bool dequeue(T & item);
-
 };
 
 
 template<class T>
-QueueTp<T>::QueueTp(int qs){
+QueueTp<T>::QueueTp(int qs) : qsize(qs){
   front = rear = nullptr;
   items = 0;
 }
