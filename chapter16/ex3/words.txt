@@ -1,0 +1,15 @@
+agrafka
+agrest
+beczka
+danie
+energia
+fajka
+gruszka
+hiena
+korek
+lampa
+metal
+piosenka
+taniec
+waga
+zamek
