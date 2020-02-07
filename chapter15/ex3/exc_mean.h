@@ -1,3 +1,6 @@
+#ifndef EXCMEAN__H__
+#define EXCMEAN__H__
+
 // exc_mean.h -- klasy wyjątków dla funkcji hmean() i gmean()
 #include <iostream>
 #include <stdexcept>
@@ -32,3 +35,5 @@ class bad_gmean : public bad_mean
         std::string Name(){ return "bad_gmean"; }
 
 };
+
+#endif

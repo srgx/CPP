@@ -1,3 +1,6 @@
+#ifndef SALES__H__
+#define SALES__H__
+
 // sales.h -- wyjątki i dziedziczenie
 #include <stdexcept>
 #include <string>
@@ -50,3 +53,4 @@ class LabeledSales : public Sales
         std::string label;
 };
 
+#endif

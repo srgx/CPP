@@ -1,3 +1,6 @@
+#ifndef EXCMEAN__H__
+#define EXCMEAN__H__
+
 // exc_mean.h -- klasy wyjątków dla funkcji hmean() i gmean()
 #include <iostream>
 #include <stdexcept>
@@ -17,3 +20,5 @@ class bad_gmean : public std::logic_error
         const char * what(){ return "Liczby powinny być większe lub równe 0"; }
 
 };
+
+#endif
