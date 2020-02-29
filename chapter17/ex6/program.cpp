@@ -1,25 +1,28 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include "emp.h"
 
+using namespace std;
+
+
+const char * file = "data.txt";
+
+void ShowFile(ifstream & fin);
+
 int main(){
-  using namespace std;
-  const int MAX = 2;
-  abstr_emp * arr[MAX];
 
-  const char * file = "data.txt";
   ifstream fin; fin.open(file);
-
   if(fin.is_open()){
-    // pokaż zawartość pliku jeśli istnieje
-    fin.close(); // zamknij plik
+    cout << "**Dane Z Pliku**\n\n";
+    ShowFile(fin); fin.close();
   }
 
+  const int MAX = 2; abstr_emp * arr[MAX];
 
-  // wczytaj dane używając tablicy wskaźników
+  // wczytaj dane  od użytkownika do tablicy wskaźników
   char ch;
   for(int i=0;i<MAX;i++){
-    // e m f h
     cout << "Jakiego użytkownika dodać?\n";
     cout << "(e)mployee, (m)anager, (f)ink, (h)ighfink: ";
     cin >> ch;
@@ -41,16 +44,41 @@ int main(){
     arr[i]->SetAll();
   }
 
-  ofstream fout(file);
-
-  for(int i=0;i<MAX;i++){
-    // zapisz zawartość tablicy do pliku
-    arr[i]->writeall(fout);
-  }
-
+  // dodaj zawartość tablicy na końcu pliku
+  ofstream fout(file, ios_base::out | ios_base::app);
+  for(int i=0;i<MAX;i++){ arr[i]->WriteAll(fout); delete arr[i]; }
   fout.close();
 
 
   // odczytaj i pokaż wszystkie dane z pliku
+  fin.open(file);
+  if(fin.is_open()){
+    cout << "**Dane Z Pliku**\n\n";
+    ShowFile(fin); fin.close();
+  }
 
+  return 0;
+}
+
+
+void ShowFile(ifstream & fin){
+  vector<abstr_emp*>pts;
+  int classType; abstr_emp * pt;
+  int safeCheck = 0; char ch;
+  while((fin>>classType).get(ch)){
+    safeCheck+=1; if(safeCheck>20){ break; }
+    switch(classType){
+      case Employee :
+        pt = new employee; break;
+      case Manager :
+        pt = new manager; break;
+      case Fink :
+        pt = new fink; break;
+      case Highfink :
+        pt = new highfink; break;
+    }
+    pt->GetAll(fin); pts.push_back(pt);
+  }
+
+  for(const auto & pt : pts){ pt->ShowAll(); delete pt; std::cout << "\n"; }
 }
