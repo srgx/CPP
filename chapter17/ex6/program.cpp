@@ -64,9 +64,8 @@ int main(){
 void ShowFile(ifstream & fin){
   vector<abstr_emp*>pts;
   int classType; abstr_emp * pt;
-  int safeCheck = 0; char ch;
+  char ch;
   while((fin>>classType).get(ch)){
-    safeCheck+=1; if(safeCheck>20){ break; }
     switch(classType){
       case Employee :
         pt = new employee; break;
