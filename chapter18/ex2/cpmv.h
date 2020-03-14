@@ -1,7 +1,8 @@
 #ifndef CPMV__H__
 #define CPMV__H__
+#include <iostream>
 
-class Cmpv{
+class Cpmv{
 public:
   struct Info{
     std::string qcode;
