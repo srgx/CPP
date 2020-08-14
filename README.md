@@ -1,6 +1,8 @@
 # CPP
 C++ Primer Plus, Sixth Edition - Exercises
 
+## Table of Contents
+
 2. Setting Out to C++
 3. Dealing with Data
 4. Compound Types
