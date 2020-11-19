@@ -1,4 +1,7 @@
 # CPP
+
+![Logo](https://i.imgur.com/Iz4wJYc.png)
+
 C++ Primer Plus, Sixth Edition - Exercises
 
 ## Table of Contents
