@@ -5,5 +5,5 @@
 3. [Convert degrees, minutes, and seconds to degrees](ex3/program.cpp)
 4. [Convert seconds to days, hours, minutes and seconds](ex4/program.cpp)
 5. [Percentage of the world's population](ex5/program.cpp)
-6. [Gasoline consumption(liters per 100 kilometers](ex6/program.cpp)
-7. [Gasoline consumption(miles per gallon](ex7/program.cpp)
+6. [Gasoline consumption(liters per 100 kilometers)](ex6/program.cpp)
+7. [Gasoline consumption(miles per gallon)](ex7/program.cpp)
