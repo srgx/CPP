@@ -7,5 +7,5 @@
 5. [Calculate tax value](ex5/program.cpp)
 6. [Enter and display sponsor names](ex6/program.cpp)
 7. [Count words](ex7/program.cpp)
-8. [Count characters in text file](ex8/program.cpp)
-9. [Read sponsor data from file](ex9/program.cpp)
+8. [Count characters in text file](ex8)
+9. [Read sponsor data from file](ex9)
