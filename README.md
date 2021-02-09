@@ -1,6 +1,4 @@
-# CPP
-
-![Logo](https://i.imgur.com/Iz4wJYc.png)
+# ![CPP](https://i.imgur.com/Iz4wJYc.png)
 
 C++ programming exercises from book "C++ Primer Plus", 6th Edition by Stephen Prata
 
